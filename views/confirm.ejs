@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+  <h1>Confirm</h1>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <!-- Makes POST request to /route -->
+          <form action="/confirm" method="POST">
+            <div class="form-group">
+              <label for="text">Username</label>
+              <input type="text" class="form-control" name="username" />
+            </div>
+            <button type="submit" class="btn btn-dark">Confirm</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/footer') %>
+  </div>
+</div>
