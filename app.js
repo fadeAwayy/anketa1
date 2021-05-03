@@ -52,14 +52,14 @@ app.post("/link", (req, res) => {
             res.render("link", { link: "nema vise linkova" });
             return;
           }
-          const currentTime = Date.now();
-          if (
-            foundUser.timeFinished &&
-            currentTime - foundUser.timeFinished < 18 * 60 * 60 * 1000
-          ) {
-            res.render("link", { link: "Sacekaj jos malo" });
-            return;
-          }
+          // const currentTime = Date.now();
+          // if (
+          //   foundUser.timeFinished &&
+          //   currentTime - foundUser.timeFinished < 18 * 60 * 60 * 1000
+          // ) {
+          //   res.render("link", { link: "Sacekaj jos malo" });
+          //   return;
+          // }
           if (unvisitedLinksLength === 20) {
             links.findOne({ id: 1 }, (err, foundLink) => {
               if (err) {
