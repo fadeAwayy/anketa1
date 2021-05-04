@@ -78,6 +78,9 @@ app.post("/link", (req, res) => {
               }
             });
           } else {
+            if (unvisitedLinkLength === 0) {
+              users.update({ $set: { currentLink: null } });
+            }
             let randomNumber = Math.floor(Math.random() * unvisitedLinksLength);
             links.findOne(
               { id: foundUser.unvisitedLinks[randomNumber] },
