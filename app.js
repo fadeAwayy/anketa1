@@ -52,14 +52,16 @@ app.post("/link", (req, res) => {
       } else {
         if (foundUser && foundUser.pass === password) {
           const unvisitedLinksLength = foundUser.unvisitedLinks.length;
-          // const currentTime = Date.now();
-          // if (
-          //   foundUser.timeFinished &&
-          //   currentTime - foundUser.timeFinished < 18 * 60 * 60 * 1000
-          // ) {
-          //   res.render("comeTomorrow");
-          //   return;
-          // }
+          const currentTime = Date.now();
+          if (
+            foundUser.timeFinished &&
+            currentTime - foundUser.timeFinished < 18 * 60 * 60 * 1000
+          ) {
+            res.render("comeTomorrow", {
+              headline: "Probajte opet za nekoliko sati",
+            });
+            return;
+          }
           if (unvisitedLinksLength === 20) {
             links.findOne({ id: 1 }, (err, foundLink) => {
               if (err) {
