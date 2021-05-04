@@ -92,7 +92,10 @@ app.post("/link", (req, res) => {
             );
             return;
           }
-          if (unvisitedLinksLength === 0 && foundUser.currentLink > 0) {
+          if (
+            unvisitedLinksLength === 0 &&
+            foundUser.currentLink.length === 1
+          ) {
             links.findOne({ id: foundUser.currentLink }, (err, foundLink) => {
               res.render("link", {
                 link: foundLink.path,
