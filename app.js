@@ -48,7 +48,8 @@ app.post("/link", (req, res) => {
       } else {
         if (foundUser && foundUser.pass === password) {
           const unvisitedLinksLength = foundUser.unvisitedLinks.length;
-          if (unvisitedLinksLength === 0) {
+          const currentLinkLength = foundUser.currentLink.length;
+          if (unvisitedLinksLength === 0 && currentLinkLength === 0) {
             res.render("link", { link: "nema vise linkova" });
             return;
           }
