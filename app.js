@@ -55,7 +55,7 @@ app.post("/link", (req, res) => {
           // const currentTime = Date.now();
           // if (
           //   foundUser.timeFinished &&
-          //   currentTime - foundUser.timeFinished < 10000 //< 18 * 60 * 60 * 1000
+          //   currentTime - foundUser.timeFinished < 18 * 60 * 60 * 1000
           // ) {
           //   res.render("comeTomorrow");
           //   return;
@@ -100,7 +100,7 @@ app.post("/link", (req, res) => {
             });
             return;
           }
-          if (unvisitedLinksLength === 0 && foundUser.currentLink === null) {
+          if (foundUser.currentLink === null) {
             res.render("noMoreLinks");
             return;
           }
