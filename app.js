@@ -53,7 +53,7 @@ app.post("/link", (req, res) => {
         if (foundUser && foundUser.pass === password) {
           const unvisitedLinksLength = foundUser.unvisitedLinks.length;
           const currentLinkLength = foundUser.currentLink.length;
-          if (unvisitedLinksLength === 0 && currentLinkLength === 0) {
+          if (unvisitedLinksLength === 0 && currentLinkLength === false) {
             res.render("noMoreLinks");
             return;
           }
