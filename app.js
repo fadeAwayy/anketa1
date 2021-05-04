@@ -52,10 +52,7 @@ app.post("/link", (req, res) => {
       } else {
         if (foundUser && foundUser.pass === password) {
           const unvisitedLinksLength = foundUser.unvisitedLinks.length;
-          if (unvisitedLinksLength === 0) {
-            res.render("noMoreLinks");
-            return;
-          }
+          const currentLinkLength = foundUser.currentLink.length;
           // const currentTime = Date.now();
           // if (
           //   foundUser.timeFinished &&
@@ -78,7 +75,9 @@ app.post("/link", (req, res) => {
                 );
               }
             });
-          } else {
+            return;
+          }
+          if (unvisitedLinksLength > 0) {
             let randomNumber = Math.floor(Math.random() * unvisitedLinksLength);
             links.findOne(
               { id: foundUser.unvisitedLinks[randomNumber] },
@@ -92,6 +91,23 @@ app.post("/link", (req, res) => {
                 );
               }
             );
+            return;
+          }
+          if (unvisitedLinksLength === 0 && currentLinkLength === 1) {
+            links.findOne({ id: foundUser.currentLink }, (err, foundLink) => {
+              res.render("link", {
+                link: foundLink.path,
+              });
+              users.update(
+                { user: foundUser.user },
+                { $set: { currentLink: null } }
+              );
+            });
+            return;
+          }
+          if (unvisitedLinksLength === 0 && currentLinkLength === 0) {
+            res.render("noMoreLinks");
+            return;
           }
         }
       }
