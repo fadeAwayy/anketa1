@@ -92,10 +92,7 @@ app.post("/link", (req, res) => {
             );
             return;
           }
-          if (
-            unvisitedLinksLength === 0 &&
-            foundUser.currentLink.length === 1
-          ) {
+          if (unvisitedLinksLength === 0 && foundUser.currentLink < 21) {
             links.findOne({ id: foundUser.currentLink }, (err, foundLink) => {
               res.render("link", {
                 link: foundLink.path,
@@ -107,7 +104,7 @@ app.post("/link", (req, res) => {
             });
             return;
           }
-          if (unvisitedLinksLength === 0 && foundUser.currentLink === 0) {
+          if (unvisitedLinksLength === 0 && foundUser.currentLink === null) {
             res.render("noMoreLinks");
             return;
           }
@@ -135,7 +132,7 @@ app.post("/confirm", (req, res) => {
         }
       );
       if (unvisitedLinks.length === 0) {
-        users.update({ user: foundUser.user }, { $set: { currentLink: 0 } });
+        users.update({ user: foundUser.user }, { $set: { currentLink: null } });
         return;
       }
     });
