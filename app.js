@@ -48,10 +48,7 @@ app.post("/link", (req, res) => {
       } else {
         if (foundUser && foundUser.pass === password) {
           const unvisitedLinksLength = foundUser.unvisitedLinks.length;
-          if (
-            unvisitedLinksLength === 0 &&
-            foundUser.currentLink.length === 0
-          ) {
+          if (unvisitedLinksLength === 0) {
             res.render("link", { link: "nema vise linkova" });
             return;
           }
@@ -78,9 +75,6 @@ app.post("/link", (req, res) => {
               }
             });
           } else {
-            if (unvisitedLinksLength === 0) {
-              users.update({ $set: { currentLink: null } });
-            }
             let randomNumber = Math.floor(Math.random() * unvisitedLinksLength);
             links.findOne(
               { id: foundUser.unvisitedLinks[randomNumber] },
