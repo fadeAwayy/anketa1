@@ -100,10 +100,6 @@ app.post("/link", (req, res) => {
               res.render("link", {
                 link: foundLink.path,
               });
-              users.update(
-                { user: foundUser.user },
-                { $set: { currentLink: foundLink.id } }
-              );
             });
             return;
           }
@@ -134,6 +130,9 @@ app.post("/confirm", (req, res) => {
           $set: { unvisitedLinks: newUnvisitedLinks, timeFinished: Date.now() },
         }
       );
+      if (newUnvisitedLinks.length === 0) {
+        users.update({ user: foundUser.user }, { $set: { currentLink: 0 } });
+      }
     });
   });
   res.render("login");
