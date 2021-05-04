@@ -58,7 +58,7 @@ app.post("/link", (req, res) => {
           //   foundUser.timeFinished &&
           //   currentTime - foundUser.timeFinished < 18 * 60 * 60 * 1000
           // ) {
-          //   res.render("link", { link: "Sacekaj jos malo" });
+          //   res.render("comeTomorrow");
           //   return;
           // }
           if (unvisitedLinksLength === 20) {
