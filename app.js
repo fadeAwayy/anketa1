@@ -102,12 +102,12 @@ app.post("/link", (req, res) => {
               });
               users.update(
                 { user: foundUser.user },
-                { $set: { currentLink: 0 } }
+                { $set: { currentLink: null } }
               );
             });
             return;
           }
-          if (unvisitedLinksLength === 0 && foundUser.currentLink === 0) {
+          if (unvisitedLinksLength === 0 && foundUser.currentLink === null) {
             res.render("noMoreLinks");
             return;
           }
