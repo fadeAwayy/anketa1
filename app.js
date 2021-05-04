@@ -100,6 +100,10 @@ app.post("/link", (req, res) => {
               res.render("link", {
                 link: foundLink.path,
               });
+              users.update(
+                { user: foundUser.user },
+                { $set: { currentLink: foundLink } }
+              );
             });
             return;
           }
