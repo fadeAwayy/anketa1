@@ -53,14 +53,14 @@ app.post("/link", (req, res) => {
         if (foundUser && foundUser.pass === password) {
           const unvisitedLinksLength = foundUser.unvisitedLinks.length;
           const currentLinkLength = foundUser.currentLink.length;
-          // const currentTime = Date.now();
-          // if (
-          //   foundUser.timeFinished &&
-          //   currentTime - foundUser.timeFinished < 18 * 60 * 60 * 1000
-          // ) {
-          //   res.render("comeTomorrow");
-          //   return;
-          // }
+          const currentTime = Date.now();
+          if (
+            foundUser.timeFinished &&
+            currentTime - foundUser.timeFinished < 10000 //< 18 * 60 * 60 * 1000
+          ) {
+            res.render("comeTomorrow");
+            return;
+          }
           if (unvisitedLinksLength === 20) {
             links.findOne({ id: 1 }, (err, foundLink) => {
               if (err) {
@@ -106,9 +106,8 @@ app.post("/link", (req, res) => {
             return;
           }
           if (unvisitedLinksLength === 0 && foundUser.currentLink === null) {
-            res.render("link", {
-              link: "test",
-            });
+            res.render("noMoreLinks");
+            return;
           }
         }
       }
