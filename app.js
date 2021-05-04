@@ -107,7 +107,7 @@ app.post("/link", (req, res) => {
           }
           if (unvisitedLinksLength === 0 && currentLinkLength === 0) {
             res.render("link", {
-              link: res.render("noMoreLinks"),
+              link: "Nema Vise Linkova",
             });
             return;
           }
