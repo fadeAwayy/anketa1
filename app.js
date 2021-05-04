@@ -107,7 +107,6 @@ app.post("/link", (req, res) => {
           }
           if (unvisitedLinksLength === 0 && currentLinkLength === 0) {
             res.render("noMoreLinks");
-            return;
           }
         }
       }
