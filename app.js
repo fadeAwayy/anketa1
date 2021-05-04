@@ -100,7 +100,7 @@ app.post("/link", (req, res) => {
             });
             return;
           }
-          if (foundUser.currentLink === null) {
+          if (foundUser.currentLink === 0) {
             res.render("noMoreLinks");
             return;
           }
@@ -128,7 +128,7 @@ app.post("/confirm", (req, res) => {
         }
       );
       if (unvisitedLinks.length === 0) {
-        users.update({ user: foundUser.user }, { $set: { currentLink: null } });
+        users.update({ user: foundUser.user }, { $set: { currentLink: 0 } });
         return;
       }
     });
