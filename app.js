@@ -93,15 +93,7 @@ app.post("/link", (req, res) => {
             return;
           }
           if (unvisitedLinksLength === 0 && foundUser.currentLink < 21) {
-            links.findOne({ id: foundUser.currentLink }, (err, foundLink) => {
-              res.render("link", {
-                link: foundLink.path,
-              });
-              users.update(
-                { user: foundUser.user },
-                { $set: { currentLink: foundLink } }
-              );
-            });
+            res.render("comeTomorrow");
             return;
           }
           if (unvisitedLinksLength === 0 && foundUser.currentLink === null) {
