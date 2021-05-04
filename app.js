@@ -132,6 +132,7 @@ app.post("/confirm", (req, res) => {
       );
       if (newUnvisitedLinks.length === 0) {
         users.update({ user: foundUser.user }, { $set: { currentLink: 0 } });
+        return;
       }
     });
   });
