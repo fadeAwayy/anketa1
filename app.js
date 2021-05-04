@@ -34,6 +34,10 @@ app.get("/confirm", (req, res) => {
   res.render("confirm");
 });
 
+app.get("/noMoreLinks", (req, res) => {
+  res.render("noMoreLinks");
+});
+
 app.post("/link", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -50,7 +54,7 @@ app.post("/link", (req, res) => {
           const unvisitedLinksLength = foundUser.unvisitedLinks.length;
           const currentLinkLength = foundUser.currentLink.length;
           if (currentLinkLength === 0) {
-            res.render("link", { link: "nema vise linkova" });
+            res.render("noMoreLinks");
             return;
           }
           // const currentTime = Date.now();
