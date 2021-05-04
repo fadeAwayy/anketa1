@@ -76,7 +76,7 @@ app.post("/link", (req, res) => {
             });
             return;
           }
-          if (unvisitedLinksLength < 20) {
+          if (unvisitedLinksLength < 20 && unvisitedLinksLength > 0) {
             let randomNumber = Math.floor(Math.random() * unvisitedLinksLength);
             links.findOne(
               { id: foundUser.unvisitedLinks[randomNumber] },
