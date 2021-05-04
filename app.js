@@ -100,7 +100,7 @@ app.post("/link", (req, res) => {
             });
             return;
           }
-          if (foundUser.currentLink === 0) {
+          if (foundUser.currentLink === 0 && unvisitedLinksLength === 0) {
             res.render("noMoreLinks");
             return;
           }
