@@ -7,7 +7,7 @@ const MongoClient = require("mongodb").MongoClient;
 const app = express();
 
 const uri =
-  "mongodb+srv://fadeAway:petarmongodb@cluster0.4wwjt.mongodb.net/anketa?retryWrites=true&w=majority";
+  "mongodb+srv://user:password@cluster0.4wwjt.mongodb.net/anketa?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
