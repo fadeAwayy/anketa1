@@ -55,10 +55,10 @@ app.post("/link", (req, res) => {
           const currentTime = Date.now();
           if (
             foundUser.timeFinished &&
-            currentTime - foundUser.timeFinished < 18 * 60 * 60 * 1000
+            currentTime - foundUser.timeFinished < 17 * 60 * 60 * 1000
           ) {
             res.render("comeTomorrow", {
-              headline: "Probajte opet za nekoliko sati",
+              headline: "Dodjite opet sutra",
             });
             return;
           }
